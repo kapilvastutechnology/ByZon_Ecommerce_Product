@@ -8,7 +8,7 @@ export const loginUser = async (req,res) =>{
         if(!isExist) return res.status(404).json({
             status: 'error',
             data: 'user doesn\'t exist'
-        })    ;
+        });
         
         const pass = bcrypt.compareSync(password, isExist.password);
         if(!pass) return res.status(400).json({

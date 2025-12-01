@@ -4,8 +4,10 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import fileUpload from 'express-fileupload';
 import mongoose from "mongoose";
+import cors from 'cors';
 const app = express();
 const port = 5000;
+app.use(cors());
 app.use(express.json());
 
 mongoose.connect('mongodb+srv://Anuj:Anuj2005@anujapi.pcejgp8.mongodb.net/BuyZon')
