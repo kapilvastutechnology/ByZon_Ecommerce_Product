@@ -34,7 +34,7 @@ export const getProduct = async (req, res) =>{
     } catch (err) {
             return res.status(500).json({
                 status: 'error',
-                data: err.message
+                message: err.message
             })
     }
 }
@@ -61,7 +61,7 @@ export const createProduct = async (req,res) =>{
         fs.unlink(`./uploads/${req.imagePath}`,(error)=>{
             return res.status(400).json({
             status: 'error',
-            data: err.message
+            message: err.message
         })
         });
     }
@@ -148,7 +148,7 @@ export const deleteProduct = async (req,res) => {
     } catch (err) {
         return res.status(500).json({
             status: 'error',
-            data: err.message
+            message: err.message
         })
     }
 
