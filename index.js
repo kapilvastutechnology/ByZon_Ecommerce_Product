@@ -8,6 +8,7 @@ import cors from 'cors';
 const app = express();
 const port = 5000;
 app.use(cors());
+app.use(express.static('uploads'));
 app.use(express.json());
 
 mongoose.connect('mongodb+srv://Anuj:Anuj2005@anujapi.pcejgp8.mongodb.net/BuyZon')

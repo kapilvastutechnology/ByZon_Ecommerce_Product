@@ -5,7 +5,7 @@ export const getProducts = async (req, res) => {
     const products = await Product.find({});
     return res.status(200).json({
         status: 'success',
-        data: products
+        products
     })
     
    } catch (error) {
@@ -40,14 +40,16 @@ export const getProduct = async (req, res) =>{
 }
 
 export const createProduct = async (req,res) =>{
-    const {title, detail,image, price} = req.body ?? {};
+    const {title, detail, price, category,brand} = req.body ?? {};
         
     try {
         await Product.create({
             title,
             detail,
             image: req.imagePath,
-            price
+            price,
+            category,
+            brand
         });
 
         return res.status(201).json({
@@ -67,7 +69,7 @@ export const createProduct = async (req,res) =>{
 
 
 export const updateProduct = async (req, res) =>{
-  const {title, detail, price} = req.body ?? {};
+  const {title, detail, price,category,brand} = req.body ?? {};
     try {
     const isExist = await Product.findById(req.id);
         if(!isExist){
@@ -86,6 +88,8 @@ export const updateProduct = async (req, res) =>{
         isExist.title = title || isExist.title;
         isExist.detail = detail || isExist.detail;
         isExist.price = price || isExist.price;
+        isExist.category = category || isExist.category;
+        isExist.brand = brand || isExist.brand;
         await isExist.save();
         //update file 
 

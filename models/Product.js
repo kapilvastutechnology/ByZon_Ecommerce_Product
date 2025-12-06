@@ -17,6 +17,21 @@ const productSchema = new mongoose.Schema({
     required: true
   },
 
+  category:{
+    type:String,
+    enum: ['food', 'clothes', 'tech','jewallrey'],
+    required: true
+  },
+  brand: {
+    type: String,
+    enum: ['addidas', 'samsung', 'tanishq', 'kfc', 'iphone']
+  },
+
+  rating: {
+    type: Number,
+    default: 0
+  },
+
   price: {
     type: Number,
     required: true
