@@ -28,7 +28,7 @@ export const getProduct = async (req, res) =>{
         
         return res.status(200).json({
             status: 'success',
-            data: isExist
+            product:isExist
         })
         
     } catch (err) {
@@ -40,7 +40,7 @@ export const getProduct = async (req, res) =>{
 }
 
 export const createProduct = async (req,res) =>{
-    const {title, detail, price, category,brand} = req.body ?? {};
+    const {title, detail, price,stock, category,brand} = req.body ?? {};
         
     try {
         await Product.create({
@@ -48,6 +48,7 @@ export const createProduct = async (req,res) =>{
             detail,
             image: req.imagePath,
             price,
+            stock,
             category,
             brand
         });
@@ -69,7 +70,7 @@ export const createProduct = async (req,res) =>{
 
 
 export const updateProduct = async (req, res) =>{
-  const {title, detail, price,category,brand} = req.body ?? {};
+  const {title, detail, price,category,brand, stock} = req.body ?? {};
     try {
     const isExist = await Product.findById(req.id);
         if(!isExist){
@@ -90,6 +91,7 @@ export const updateProduct = async (req, res) =>{
         isExist.price = price || isExist.price;
         isExist.category = category || isExist.category;
         isExist.brand = brand || isExist.brand;
+        isExist.stock = stock || isExist.stock;
         await isExist.save();
         //update file 
 
@@ -114,13 +116,13 @@ export const updateProduct = async (req, res) =>{
             fs.unlink(`./uploads/${req.imagePath}`,(error)=>{
                 return res.status(500).json({
                     status: 'error',
-                    data: err.message
+                    message: err.message
                 });
             })
         }else{
             return res.status(500).json({
             status: 'error',
-            data: err.message
+            message: err.message
         });
 
         }

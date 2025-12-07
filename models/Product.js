@@ -22,9 +22,15 @@ const productSchema = new mongoose.Schema({
     enum: ['food', 'clothes', 'tech','jewallrey'],
     required: true
   },
+  
   brand: {
     type: String,
     enum: ['addidas', 'samsung', 'tanishq', 'kfc', 'iphone']
+  },
+
+  stock:{
+    type:Number,
+    required:true
   },
 
   rating: {

@@ -5,7 +5,7 @@ export const checkId = (req, res,next) =>{
     if(!mongoose.isValidObjectId(id)) 
         return res.status(400).json({
     status: 'error', 
-    data: 'please provide a valid id'
+    message: 'please provide a valid id'
 });
 
    req.id = id;
